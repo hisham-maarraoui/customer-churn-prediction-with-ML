@@ -136,11 +136,14 @@ Geography_Germany |  0.091373
 
 
     - If the customer has over a 40% risk of churning, generate a 3 sentence explanation of why they are at risk of churning.
-    - If the customer has less than a 40% risk of churning, generate a 3 sentence explanation of why they might not be at risk of churning.
+    - Else, if the customer has less than a 40% risk of churning, generate a 3 sentence explanation of why they might not be at risk of churning.
     - Your explanation should be based on the customer's information, the summary statistics of churned and non-churned customers, and the feature importances provided.
     
 
         Don't mention the probability of churning, or the machine learning model, or say anything like "Based on the machine learning model's prediction and the top 10 most important features", just explain the prediction.
+        Don't say anything like "If the customer has over a 40% risk of churning, here is a 3 sentence explanation of why he likely to churn".
+        Don't say anything like "If the customer has less than a 40% risk of churning, here is a 3 sentence explanation of why he is not likely to churn".
+        In your answer, make sure to rely on the customer's probability of churning, which is provided around the beginning of this prompt (which is a {round(probability * 100, 1)}% probability of churning).
     
     """
 
@@ -169,7 +172,8 @@ def generate_email(probability, input_dict, explanation, surname):
     {explanation}
     
     
-    Generate an email to the customer based on ther information, asking them to stay if they are at risk of churning, or offering them incentives so that they become more loyal to the bank. Do not offer them interest related incentives or insurance related incentives. Do not offer them interest related incentives or insurance related incentives. Do not offer them interest related incentives or insurance related incentives.
+    Generate an email to the customer based on ther information, asking them to stay if they are at risk of churning, or offering them incentives so that they become more loyal to the bank. Do not offer them interest related incentives or insurance related incentives. Do not offer them interest related incentives or insurance related incentives. Do not offer them interest related incentives or insurance related incentives. Do not offer them cashback incentives or cashback related incentives. Do not offer them credit incentives or credit related incentives. Do not offer them credit card incentives or credit card related incentives.
+Do not offer them 'increased rewards for credit card spending' incentives.
     
     Make sure to list out a set of incentives to stay based on their information, in bullet point format. Don't ever mention the probability of churning, or the machine learning model to the customer.
     """
@@ -277,7 +281,7 @@ if selected_customer_option:
 
   st.markdown("---")
 
-  st.subheader("Explanation of Prediction")
+  st.subheader("Assesment & Explanation")
 
   st.markdown(explanation)
 
