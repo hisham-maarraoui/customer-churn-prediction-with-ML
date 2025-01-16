@@ -281,7 +281,7 @@ if selected_customer_option:
 
   st.markdown("---")
 
-  st.subheader("Assesment & Evaluation")
+  st.subheader("Assessment & Evaluation")
 
   st.markdown(explanation)
 
